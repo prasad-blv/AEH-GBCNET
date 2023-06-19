@@ -38,7 +38,7 @@ def parse():
     parser.add_argument('--height', dest="height", default=224, type=int)
     parser.add_argument('--width', dest="width", default=224, type=int)
     parser.add_argument('--no_roi', action='store_true')
-    parser.add_argument('--load_path', dest="load_path", default="/content/drive/MyDrive/GBCU/imgs/gbcnet.pth")
+    parser.add_argument('--load_path', dest="load_path", default="/content/drive/MyDrive/GBCU/outputs/gbcnet.pth")
     parser.add_argument('--save_dir', dest="save_dir", default="/content/drive/MyDrive/GBCU/outputs")
     parser.add_argument('--network', dest="network", default="gbcnet")
     parser.add_argument('--att_mode', dest="att_mode", default="1")
@@ -117,7 +117,7 @@ def main(args):
     spec = (cfm[0][0] + cfm[0][1] + cfm[1][0] + cfm[1][1])/(np.sum(cfm[0]) + np.sum(cfm[1]))
     sens = cfm[2][2]/np.sum(cfm[2]) 
     acc_bin = (cfm[0][0] + cfm[0][1] + cfm[1][0] + cfm[1][1] + cfm[2][2])/np.sum(cfm)
-    print("Acc: %.4f 2-Class Acc: %.4f Specificity: %.4f Sensitivity: %.4f"%(acc, acc_bin, spec, sens))
+    print("Accuracy: %.4f Specificity: %.4f Sensitivity: %.4f"%(acc, spec, sens))
     out_dir = "roc"
     os.makedirs(out_dir, exist_ok=True)
     score_fname = os.path.join(out_dir, args.score_name)
